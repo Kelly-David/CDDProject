@@ -1,5 +1,7 @@
 # CDDProject
+
 ## Wator Simulation
+
 Part 1: Serial Implementation
 
 Part 2: Concurrent Implementation
