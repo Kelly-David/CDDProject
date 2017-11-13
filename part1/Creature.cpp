@@ -37,4 +37,6 @@ int Creature::getY() {
 Creature::Creature(int a=0, int xC, int yC) 
 : age(a), x(xC), y(yC) { };
 
+Creature::~Creature() { };
+
 
