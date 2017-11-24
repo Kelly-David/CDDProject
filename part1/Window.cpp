@@ -10,10 +10,10 @@ Date: 17/11/12
 #include "Fish.h"
 
 // variables
-
-int width = 800;
+int numFish=10;
+int width = 1100;
 int height = 600;
-//Fish fish1;
+
 int main()
 {
  
@@ -21,19 +21,24 @@ int main()
     // setting backgound image
     sf:: Texture texBack;
     texBack.loadFromFile("images/water.png");
- sf:: Sprite spriteBack;
- spriteBack.setTexture(texBack);
+    sf:: Sprite spriteBack;
+    spriteBack.setTexture(texBack);
 
- 
- // creating fish and setting size of the fish 
- sf:: Texture tex;
- tex.loadFromFile("images/fish1.png");
- sf:: Sprite sprite;
- sprite.setTexture(tex);
- sprite.setPosition(sf::Vector2f(50, 50));
- sprite.setScale(sf::Vector2f(0.1f,0.1F));
-    
+    //#################have to be moved to functionor diferent file  ###############
+    // extern al cpp and header not working 
+    // creating fish and setting size of the fish 
+    sf:: Texture tex;
+    tex.loadFromFile("images/fish1.png");
+    sf:: Sprite sprite[numFish];
+    // creating array of fish
+    for (int i=0;i<numFish;i++)
+      {
+	sprite[i].setTexture(tex);
+        sprite[i].setPosition(sf::Vector2f((rand() % width),(rand() %height)));
+        sprite[i].setScale(sf::Vector2f(0.1f,0.1F));
+      }
 
+    //#############################################################################
     while (window.isOpen())
     {
         sf::Event event;
@@ -44,8 +49,11 @@ int main()
         }
 	window.clear();
 	window.draw(spriteBack);
-       	window.draw(sprite);
-
+	// drraing fish on the screen 
+	for (int i=0;i<numFish;i++)
+	  {
+	    window.draw(sprite[i]);
+	  }
         window.display();
     }
 
