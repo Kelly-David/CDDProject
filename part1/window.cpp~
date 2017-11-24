@@ -1,0 +1,45 @@
+/*
+window.cpp
+wator
+Authors: Vaidas Siupienius, David Kelly 
+Date: 17/11/12
+
+ */
+
+
+#include <SFML/Graphics.hpp>
+#include <iostream>
+
+int main()
+{
+    sf::RenderWindow window(sf::VideoMode(600, 600), "Wator 2017");
+  
+  sf::Texture texture;
+
+  if (!texture.loadFromFile("fishImg.png")){
+    std:: cout<< "Not able to load fish image" <<std::endl; 
+  }
+
+  // texture.create(20,20);
+  
+  sf::Sprite sprite(texture);
+  sprite.scale(sf::Vector2f(2.0f, 2.0f));
+  // Sprite.setPosition(100.0f, 200.0f);
+  
+    
+
+    while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+        window.clear(sf::Color::Blue);
+	window.draw(sprite);
+        window.display();
+    }
+
+    return 0;
+}

@@ -1,0 +1,28 @@
+
+
+
+#include <SFML/Graphics.hpp>
+
+#include<iostream>
+#include "fish.h"
+
+class Fish{
+public: 
+  // sf::Texture texture;
+
+  // if (!texture.loadFromFile("fishImg.jpg")){
+  //   std:: cout<< "Not able to load fish image" << endl; 
+  // }
+  // sf:: Sprite sprite;
+  // strite.setTexture(texture);
+  // sprite.setScale(sf::Vector2f(0.5, 0.5));
+
+ 
+  fish.setSize(sf::Vector2f(20, 20));
+  fish.setFillColor(sf::Color::Yellow));
+
+
+  
+
+
+}

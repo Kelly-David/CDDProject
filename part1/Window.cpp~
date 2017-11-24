@@ -1,0 +1,40 @@
+/*
+window.cpp
+wator
+Authors: Vaidas Siupienius, David Kelly 
+Date: 17/11/12
+
+ */
+
+
+#include <SFML/Graphics.hpp>
+#include <iostream>
+
+#include "Fish.h"
+// variables
+
+int width = 800;
+int height = 600;
+Fish fish;
+
+int main()
+{
+    sf::RenderWindow window(sf::VideoMode(width, height), "Wator 2017");
+
+    
+
+    while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+        window.clear(sf::Color::Blue);
+	window.draw(fish);
+        window.display();
+    }
+
+    return 0;
+}
