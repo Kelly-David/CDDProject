@@ -14,10 +14,12 @@ int numFish=10;
 int width = 1100;
 int height = 600;
 int fishMovesInSeconds = 10;
+int fishLives = 5; // fishes will live five moves
+int minFish = 5;  // minimum fishes requered what add more fishes 
 
 int main()
 {
- 
+    sf:: Clock clock;
     sf::RenderWindow window(sf::VideoMode(width, height), "Wator 2017");
     // setting backgound image
     sf:: Texture texBack;
@@ -30,20 +32,36 @@ int main()
     // creating fish and setting size of the fish 
     sf:: Texture tex;
     tex.loadFromFile("images/fish1.png");
-    sf:: Sprite sprite[numFish];
-    // creating array of fish
+    sf:: Sprite fish[numFish];
+    // creating array of fish when game startrs after that is drawed by clock function 
+    for (int i=0;i<numFish;i++)
+           {
+	     float positionX = rand() % width ;
+	     float positionY =rand() %height;
+	     if (positionX> (width-(width*0.1)))
+	       {
+		 positionX = rand() % width ;
+	       }
+	     if (positionY>(height -(height *0.1)))
+	       {
+		 positionY = rand() % height ;
+	       }
+	     fish[i].setTexture(tex);
+	     fish[i].setPosition(sf::Vector2f(positionX,positionY));
+	     fish[i].setScale(sf::Vector2f(0.1f,0.1F));
+	   } 
+
+    // checking for collision???????????????????????????????????????????not finished 
     for (int i=0;i<numFish;i++)
       {
-	sprite[i].setTexture(tex);
-        sprite[i].setPosition(sf::Vector2f((rand() % width),(rand() %height)));
-        sprite[i].setScale(sf::Vector2f(0.1f,0.1F));
-	
+	//	if (fish[i].getGlobalBounds().intersects(shark[j].getGlobalBounds())==true)
+	  {
+
+	    // kill the fish  
+
+	  }
+
       }
-    //    sf:: Time time= sf::seconds(30);
-    sf:: Clock clock;
- 
-
-
 
 
     
@@ -61,27 +79,44 @@ int main()
 	window.draw(spriteBack);
 	// changing fishes location
 	// getEclapsedTime is getting time from last clock restarting 
-      if(clock.getElapsedTime().asSeconds()>fishMovesInSeconds){
+      if(clock.getElapsedTime().asSeconds()>fishMovesInSeconds)
+	{
           for (int i=0;i<numFish;i++)
            {
-       	sprite[i].setTexture(tex);
-        sprite[i].setPosition(sf::Vector2f((rand() % width),(rand() %height)));
-        sprite[i].setScale(sf::Vector2f(0.1f,0.1F));
+	     float positionX = rand() % width ;
+	     float positionY =rand() %height;
+	     if (positionX> (width-(width*0.1)))
+	       {
+		 positionX = rand() % width ;
+	       }
+	     if (positionY>(height -(height *0.1)))
+	       {
+		 positionY = rand() % height ;
+	       } 
+	fish[i].setTexture(tex);
+        fish[i].setPosition(sf::Vector2f(positionX,positionY));
+        fish[i].setScale(sf::Vector2f(0.1f,0.1F));
 	// restarting clock from begining
-	clock.restart();
-      }
+	
+	   }
+	  clock.restart();
+	  fishLives--;
+	  if(fishLives==0)
+	    {
+	      // draw add more fishes 
 
-
+	    }
+	  
 	 }
 
 
 
 
 	
-	// drraing fish on the screen 
+	// draw fish on the screen 
 	for (int i=0;i<numFish;i++)
 	  {
-	    window.draw(sprite[i]);
+	    window.draw(fish[i]);
 	  }
         window.display();
     }
