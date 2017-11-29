@@ -7,6 +7,7 @@ Date: 17/11/12
  */
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <ctime>
 #include "Fish.h"
 
 // variables
@@ -18,8 +19,20 @@ int fishMovesInSeconds = 2;
 int fishLives = 5; // fishes will live five moves
 int minFish = 5;	 // minimum fishes requered what add more fishes
 
+/* \brief float getRandom(int dimension)
+	*/
+float getRandom(int dimension) {
+	float position = rand() % dimension;
+	if (position > (dimension - (dimension * 0.1)))
+		{
+			position = rand() % dimension;
+		}
+	return position;
+}
+
 int main()
 {
+	srand(time(NULL));
 	sf::Clock clock;
 	sf::RenderWindow window(sf::VideoMode(width, height, 16), "Wator 2017");
 	// setting backgound image
@@ -60,16 +73,8 @@ int main()
 	sf::Sprite shark[numSharks];
 
 	for (int i = 0; i< numSharks; ++i) {
-		float positionX = rand() % width;
-		float positionY = rand() % height;
-		if (positionX > (width - (width * 0.1)))
-		{
-			positionX = rand() % width;
-		}
-		if (positionY > (height - (height * 0.1)))
-		{
-			positionY = rand() % height;
-		}
+		float positionX = getRandom(width);
+		float positionY = getRandom(height);
 		shark[i].setTexture(texShark);
 		shark[i].setPosition(sf::Vector2f(positionX, positionY));
 		shark[i].setScale(sf::Vector2f(0.1f, 0.1F));
@@ -123,16 +128,8 @@ int main()
 
 			for (int i = 0; i < numSharks; i++)
 			{
-				float positionX = rand() % width;
-				float positionY = rand() % height;
-				if (positionX > (width - (width * 0.1)))
-				{
-					positionX = rand() % width;
-				}
-				if (positionY > (height - (height * 0.1)))
-				{
-					positionY = rand() % height;
-				}
+				float positionX = getRandom(width);
+				float positionY = getRandom(height);
 				shark[i].setTexture(texShark);
 				shark[i].setPosition(sf::Vector2f(positionX, positionY));
 				shark[i].setScale(sf::Vector2f(0.1f, 0.1F));
